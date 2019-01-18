@@ -1,32 +1,32 @@
 
-It is important to investigate data before posing questions about the data and trying to answer them. Not only data investigation helps you understand data throughly but also determine roadmap for the next steps. Let's look at what we get from Boston Airbnb data.
+It is important to investigate data before posing questions about the data and trying to answer them. Not only data investigation helps you understand data throughly but also determine road map for the next steps. Let's look at what we get from Boston Airbnb data.
 
-Data comes in 3 seperate parts; listings, calendar and reviews. listings give each unique accommadation listing from 2016 to August 2017 scraped lasly on August 17, 2017. calendar gives the whole time period for each listing and reviews data includes each comment made on these listed Airbnb homes. 
+Data comes in 3 separate parts; listings, calendar and reviews. listings give each unique accommodation listing from 2016 to August 2017 scraped lastly on August 17, 2017. calendar gives the whole time period for each listing and reviews data includes each comment made on these listed Airbnb homes. 
 
-Allston-Brighton, South-End, Jamaica Plain and Back Bay are the neighbourhoods that have the most largest number of homes in Boston. Harvard Square, Financial District, Downtown Crossing and Leather District has homes that have the highest average price.
+Allston-Brighton, South-End, Jamaica Plain and Back Bay are the neighborhoods that have the most largest number of homes in Boston. Harvard Square, Financial District, Downtown Crossing and Leather District has homes that have the highest average price.
 
-General trend in pricing in Boston is given below. It is the average price of all available homes in Boston. Blue line gives the average price. It is obvious that the price data is cylical weekly. Red line is 7-day moving average which average out up and downs in a weekly base. The price decreases steadily from September 2016 to February 2017. It makes a deep in February. After this point on, it increases until the end of the time window that is September 2017. The price level makes a jump between April and May. It is the busiest time of the year and the price goes up by 10%. 
+General trend in pricing in Boston is given below. It is the average price of all available homes in Boston. Blue line gives the average price. It is obvious that the price data is cyclical weekly. Red line is 7-day moving average which average out up and downs in a weekly base. The price decreases steadily from September 2016 to February 2017. It makes a deep in February. After this point on, it increases until the end of the time window that is September 2017. The price level makes a jump between April and May. It is the busiest time of the year and the price goes up by around 10%. 
 
 The number of total available listings is given below. Th number of Airbnb homes in Boston city increases from September to December. It might be due to time being off-season or new homes entering the market. We need a longer time window to decide on this. But the inverse relationship between price and supply of homes is obvious.
 
-The price dynamics are different for each neighbourhood. For instance, the average price in Back Bay closely follows the general trend,ie decreases from September until December and peaks between April and May. Whereas, in Allston-Brighton the mean price increases between December and January and falls down at the end of May. Also, the percentage change between weekend and weekdays is large in Allston-Brighton and not large in Back Bay.
+The price dynamics are different for each neighborhood. For instance, the average price in Back Bay closely follows the general trend,ie decreases from September until December and peaks between April and May. Whereas, in Allston-Brighton the mean price increases between December and January and falls down at the end of May. Also, the percentage change between weekend and weekdays is large in Allston-Brighton and not large in Back Bay.
 
-The number of homes entering each day is given below. After 2013, the increase accelarates and in 4 years the number of available homes in Boston almost quadruples. 
+The number of homes entering each day is given below. After 2013, the increase accelerates and in 4 years the number of available homes in Boston almost quadruples. 
 
 The number of reviews written each year increases rapidly especially after 2013. While this number is around 3000 in 2013, it is around 30k in 2016. Almost half of the reviews is written between May and August. If we assume it is most likely reviews are written immediately after staying at homes, time period between May and August is the season for Airbnb homes in Boston. The total number of reviews written each day is given below. It is apparent how this number goes up like crazy especially after 2015. (Most probably it is related to brand recognition of Airbnb but it can be a subject of another post and dataset)
 
 
 Price Prediction
 
-Each listing has a price listed on the scraped date besides some other features like neighborhood, amenities, description, etc. The data needs cleaning to use features and make feature engineering. I basically include all numerical features, extract dummy variables from amenities, host_verifications and all other categorical variables. I end up having 160 independent variables. I omit outlier price values. Outliers are 1.5 interquartile range far away from 1st and 3rd quartile values. I use Adaptive Boosting Regressor. 
-feature importance 
+Each listing has a price listed on the scraped date besides some other features like neighborhood, amenities, description, etc. The data needs cleaning to use features and make feature engineering. I basically include all numerical features, extract dummy variables from amenities, host_verifications and all other categorical variables. I end up having 160 independent variables. I omit price outliers  as these samples will likely deteriorate the performance of the estimator. Outliers are defined as 1.5 interquartile range far away from 1st and 3rd quartile values. I use Adaptive Boosting Regressor. 
 
-Let's look at how description, summary parts of the listings differ and what kind of words are distinctive for each neighbourhood. I include only name, summary and description features and combine them into one column. It is basically doing a classification of neighbourhoods based on the name,summary and description features. Here I care more about the features of this classification than the classificatiion itself.
-Here are the words that are most important to make distinction between neighbourhoods:
+A feature is called 'important' if the estimator relies on this feature in predicting the dependent variable which is price here. When we look at the feature importances of the estimator, it is seen that 36% of explained variance of price is 'explained' by the dummy variable showing if room type is entire home/apartment. Number of bathrooms explains 9% of variance and longitude and latitude together explains 10% of the variance in price. Lastly the variance explained by the number of bedrooms is around 4. Most of the remaining features importances are around 1%. All in all, what you pay for your stay depends on the number of bedrooms and bathrooms, if you rent entire apartment or not and the neighborhood of the place. The 20 features with the largest importances are given below.
+
+Let's look at how description, summary parts of the listings differ and what kind of words are distinctive for each neighborhood. I include only name, summary and description features and combine them into one column. It is basically doing a classification of neighborhoods based on the name,summary and description features. At this part, I care more about the features of this classification than the classification itself. Here are the words that are most important to make distinction between neighborhoods:
 
 
 
-Lastly, it would be good to look at how happy the users after Airbnb service. Below is the word cloud of comments by users. It seems that users are pretty happy with the service they get, don't you think?
+Lastly, it would be good to look at how happy the users after Airbnb service. Below is the word cloud of comments by users. It seems that users are pretty content with the service they get, don't you think?
 
 
 
