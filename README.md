@@ -1,7 +1,8 @@
-# AirbnbBostonData
+# AirBnB Boston Data
 What can we learn from AirBnB Boston data?
 
-The project is mainly about data investigation of AirBnB Boston Data. 
+The project is mainly about data investigation of AirBnB Boston Data and 
+machine learning method to predict price of homes
 
 The data is from Kaggle page : https://www.kaggle.com/airbnb/boston
 
@@ -41,10 +42,34 @@ final.csv includes the cleaned data
 
 .png files -- saved visualizations
 
-For cleaning and data wrangling efforts, machine learning models applied take
-a look at EDA.ipynb
+For cleaning and data wrangling efforts, machine learning models applied in 
+this analysis, take a look at EDA.ipynb
 
-summary of the results
+
+Results from this analysis can be summarized as follows:
+
+1. The average price of homes in Boston is weekly seasonal. Removing this, the 
+price decreases drastically from September 2016 until February 2017 by 30%. 
+It starts to increase in February, jumps by 14% in mid-April and continues 
+increasing until September. 
+
+2. The busiest time in Boston starts in May and continues until September
+
+3. Price movements in each neighbourhood is different.
+
+4. We can predict the price with rmse of $1.51 by using AdaBoostRegressor
+
+5. The variation in price can be explained by features of how many people home
+accommodates, latitude and longitude of the place, if rented place is entire 
+home/apartment and if the place has a kitchen or not. 
+
+6. The distinctive words used in place description and reviews for each
+neighbourhood are found, see EDA.ipynb
+
+7. Word Cloud of reviews reveal that most frequent words are positive about the
+experience with AirBnB homes in Boston
+
+
 
 
 
