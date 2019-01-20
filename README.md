@@ -1,5 +1,6 @@
 # AirBnB Boston Data
-What can we learn from AirBnB Boston data?
+Reach the blog post "What can we learn from AirBnB Boston data?" from 
+https://medium.com/@ilknur.chakir/what-can-we-learn-from-airbnb-boston-data-3ac27621bad3
 
 The project is mainly about data investigation of AirBnB Boston Data and 
 machine learning method to predict price of homes
