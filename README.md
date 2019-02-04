@@ -1,7 +1,5 @@
 # AirBnB Boston Data
 
-# StarbucksChallenge
-
 
 #### Table of Contents
 
